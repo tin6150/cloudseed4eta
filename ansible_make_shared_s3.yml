@@ -1,0 +1,20 @@
+# this is a prototype ansible play to create s3 bucket in aws
+# and set shared access via a policy.json (TBD)
+# draft
+# dependencies: "aws s3 ls" need to work, right credentials in place to create bucket 
+
+# run as:
+# ansible-playbook ./ansible_make_shared_s3.yml 
+
+# ref: https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html 
+
+- hosts: localhost
+  tasks:
+    - name: Create the S3 Tanks bucket
+      s3_bucket:
+      # amazon.aws.s3_bucket:
+        name: tin6150-lbl-s3-test
+        versioning: yes
+        tags:
+          name: tin6150_LBL_S3_test_bucket_name
+          type: demo
