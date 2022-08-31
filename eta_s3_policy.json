@@ -1,19 +1,20 @@
-# this is wrong, xml, not json, was from
-# https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html
-<?xml version="1.0" encoding="UTF-8"?>
-<AccessControlPolicy xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-  <Owner>
-    <ID>*** Owner-Canonical-User-ID ***</ID>
-    <DisplayName>owner-display-name</DisplayName>
-  </Owner>
-  <AccessControlList>
-    <Grant>
-      <Grantee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-               xsi:type="Canonical User">
-        <ID>*** Owner-Canonical-User-ID ***</ID>
-        <DisplayName>display-name</DisplayName>
-      </Grantee>
-      <Permission>FULL_CONTROL</Permission>
-    </Grant>
-  </AccessControlList>
-</AccessControlPolicy>
+# https://aws.amazon.com/premiumsupport/knowledge-center/cross-account-access-s3/#:%7E:text=Using%20cross-account%20IAM%20roles,AWS%20account%20or%20AWS%20services.
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::AccountB:user/AccountBUserName"
+            },
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:PutObjectAcl"
+            ],
+            "Resource": [
+                "arn:aws:s3:::AccountABucketName/*"
+            ]
+        }
+    ]
+}

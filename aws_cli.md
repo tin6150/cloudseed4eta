@@ -28,7 +28,8 @@ Be careful with this step, leaked credentials would mean other can gain access t
 
 `~/.aws/config`  can be edited to say, change regio or output to text or json
 
-Alternatively, shell environment variables AWS_ACCESS_KEY_ID AWS_SECRETE_ACCESS_KEY can be used, but be careful it get cached in the shell's history file eg `~/.bash_history`
+Alternatively, shell environment variables AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY can be used, but be careful it get cached in the shell's history file eg `~/.bash_history`
+
 
 ## transfering files using aws s3 command
 
