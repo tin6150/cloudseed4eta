@@ -82,3 +82,18 @@ aws s3 sync my_data_dir s3://bild-aq-tin6150-data/inmap
 aws s3 sync my_data_dir s3://bild-aq-tin6150-data/EviProLite
 aws s3 sync my_data_dir s3://bild-aq-tin6150-data/two-folder/deep-ok/
 ```
+
+## aws user profile 
+
+In addition to the `[default]` profile in ~/.aws/credentials, 
+user can add additional sections for altnerate (aws) user profiles eg `[user2]`.  
+
+Then `--profile user2` can be appended to aws command for it to be executed under that alternate profile
+
+aws ec2 describe-instances --output=table   # ascii table for human consumption
+aws ec2 describe-instances --output=text    # not exactly human friendly
+aws ec2 describe-instances --output=json    # definately not human friendly
+aws ec2 describe-instances --profile user2  # use default output per ~/.aws/config, and alternate profile
+
+Further info, see
+https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html

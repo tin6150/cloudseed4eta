@@ -47,6 +47,7 @@ resource "aws_security_group" "tf-sg" {
 			"131.243.0.0/16",	# LBL
 		]
   }
+
   ingress {
     description = "LBL WiFi"
     from_port   = 22
@@ -101,6 +102,18 @@ resource "aws_security_group" "tf-sg" {
   }
 
   ingress {
+    description = "Ling"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = [
+			"76.103.180.199/32",	# comcast SF
+			"76.103.180.0/24",	# comcast SF
+		]
+  }
+
+
+  ingress {
     description = "Sonic.net"
     from_port   = 22
     to_port     = 22
@@ -125,6 +138,7 @@ resource "aws_security_group" "tf-sg" {
 		      "23.93.0.0/16",
 		]
   }
+
 
   #### outbound rules ####
 

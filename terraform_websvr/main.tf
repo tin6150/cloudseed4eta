@@ -26,9 +26,15 @@ provider "aws" {
   #? profile               = "profile1"
 }
 
+# amazon linux use ec2user@
+# ubuntu@
+# no obvious good image for Rocky or even CentOS...
 resource "aws_instance" "webserver" {
-  #ami = "ami-09d56f8956ab235b3"
-  ami           = "ami-0aab355e1bfa1e72e"
+  #ami           = "ami-09d56f8956ab235b3"  # FC eg?
+  #ami           = "ami-0aab355e1bfa1e72e"  # web example, works
+  ami           = "ami-0d70546e43a941d70"  # us-west-2 oregon new ubuntu server 22.04 LTS HVM SSD root dev=ebs
+  #ami           = "ami-0c2ab3b8efb09f272"  # AmaLin 2 HVM Kernel 5.10 SSD  ## untested
+
   instance_type = var.instance_type
   ## ++CHANGEME++ key_name = "EC2-keyPair-Name"  # key has to be listed by: aws ec2 describe-key-pairs
   key_name = "tin@aws2208blactam.withPass" # changing this, tf apply will destroy existing instance and recreate them.
