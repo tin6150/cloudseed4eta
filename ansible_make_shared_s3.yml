@@ -9,6 +9,17 @@
 # ref: https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html 
 
 - hosts: localhost
+  connection: local
+  tasks:
+    - name: Install Ansible Galaxy Freeipa Role
+      community.general.ansible_galaxy_install:
+        type: collection
+        #name: freeipa.ansible_freeipa:1.6.1
+        name: amazon.aws.s3_bucket
+        dest: ./collections
+        force: true
+
+- hosts: localhost
   tasks:
     - name: Create the S3 Tanks bucket
       s3_bucket:
