@@ -1,0 +1,16 @@
+---
+# ansible-playbook ./ansible_hello_world.yml 
+
+
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Hello world
+      shell: echo "Hello world"
+
+...
+
+# ansible doesn't really care about the end of yaml marker, 
+# it continues on and keeps parsing
+# there are no multiline block comment like C /* */ 
+# such a PITA

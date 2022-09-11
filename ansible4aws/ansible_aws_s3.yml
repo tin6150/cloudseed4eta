@@ -1,0 +1,14 @@
+---
+# ansible-playbook ansible_aws_s3.yml
+# ref https://www.middlewareinventory.com/blog/ansible-aws_s3-example/
+- name: AWS S3 Bucket List - Ansible
+  hosts: localhost
+  tasks:
+  - name: List keys or Objects
+    amazon.aws.aws_s3:
+      #profile: personal
+      bucket:  bild-aq-tin6150-atlas-git-repo
+      mode: list
+    register: listresult
+
+  - debug: msg={{listresult.s3_keys}}
