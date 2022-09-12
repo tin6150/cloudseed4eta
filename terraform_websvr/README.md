@@ -7,6 +7,15 @@
 # Using terraform to automatically provision AWS accounts
 
 ## 1. Install Terraform (1.2.0+ required):
+
+### CentOS
+```
+sudo yum install -y yum-utils
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+sudo yum -y install terraform
+```
+
+
 ### Mint/Debian
 ```
 curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
@@ -40,7 +49,6 @@ if aws client is installed, and there is ~/.aws, that seems to take precedence.
 
 ## 3.  Run terraform playbook 
 ```
-#xx cd ec2_creation     tf apply works here too, but no ec2 keypair to ssh in for this example
 cd jumpstart_websvr
 terraform init
 terraform plan
@@ -54,7 +62,7 @@ Here is what this playbook does:
 - create firewall rules (security groups) for common Berkeley IP ranges
 - create a tiny EC2 instance with the above network security 
 
-========================================
+
 ========================================
 
 
@@ -64,3 +72,4 @@ make a copy of the security group (sg-...) before terrafly destroy
 
 
 
+========================================
