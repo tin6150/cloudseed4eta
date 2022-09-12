@@ -6,7 +6,7 @@ See [aws_cli.md](./aws_cli.md) for example aws cli command.
 
 Below is info about script to create the EC2 instance.
 
-~~~~
+~~
 
 # Role of this repo.
 
