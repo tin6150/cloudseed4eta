@@ -1,6 +1,10 @@
 # cloudseed4eta
+
 Scripts and documentation to seed AWS cloud environment for ETA BILD-AQ project
 
+See (./aws_cli.md) for example aws cli command.
+
+Below is info about script to create the EC2 instance.
 
 ~~~~
 
