@@ -2,7 +2,7 @@
 
 Scripts and documentation to seed AWS cloud environment for ETA BILD-AQ project
 
-See (./aws_cli.md) for example aws cli command.
+See [aws_cli.md](./aws_cli.md) for example aws cli command.
 
 Below is info about script to create the EC2 instance.
 
@@ -18,8 +18,7 @@ that allows for LBL, UCB, and popular ISP from the bay area.
 so that they can then just tweak and edit an seeded project, 
 yet to more secure than having everything wide open to the whole internet.
 
-Seeding AWS was done via TerraForm, under  terraform_websvr/ 
-(ec2_creation TF config from F.C. also worked, but no firewall rules there)
+Seeding AWS was done via TerraForm, under  [terraform_svr/](terraform_svr/)
 
 BUT...
 
@@ -33,17 +32,9 @@ New plan: Use Ansible
 ---------------------
 
 
-There is the gcp module, which is still hard coding to the provider.  
-https://docs.ansible.com/ansible/2.5/scenario_guides/guide_gce.html
-The gcp module replaces the old gce.
+Planning to move to Ansible, 
+but need to rely on Ansible Galaxy amazon.aws collection
+Determining best way to do this.
+TBD.
 
-Hopefully Ansible has as much power/feature as TF.
-Then at least subsequent machine config can use existing Ansible playbooks.
-
-
-PS.  There is an Ansible  CloudStack module, 
-it seems pretty high level, platform agnostic, and provide a higher level of abstraction:
-https://docs.ansible.com/ansible/2.5/scenario_guides/guide_cloudstack.html#introduction
-BUT It is for VMware, HyperV, KVM and other VM stuff.  
-Not AWS/GCP?
 
