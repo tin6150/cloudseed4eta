@@ -58,6 +58,14 @@ Here is what this playbook does:
 - create firewall rules (security groups) for common Berkeley IP ranges
 - create a tiny EC2 instance with the above network security 
 
+## Terraform gotchas 
+
+Terraform tends to destroy things, even for small changes.
+A glitch in instance_type could result in a destroy.  
+For analytical server that is meant to be stateful, may end up accidentally erasing data on an instance.
+
+security group update (eg adding IP) hopefully does not destroy the instance data.
+
 
 ========================================
 

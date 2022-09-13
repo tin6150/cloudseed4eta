@@ -17,8 +17,8 @@ terraform {
 provider "aws" {
   ## ++CHANGEME++ check region for ec2 for this project/account.
   #region = var.aws_region
-  region = "us-west-2"      # tf does not care whats in ~/.aws/config
-  #region = "us-east-1"
+  #region = "us-west-2"      # tf does not care whats in ~/.aws/config
+  region = "us-east-1"
   ## ++CHANGEME++ shared_credentials_file = "/home/User_Name/.aws/credentials"
   ## or user should be ec2-user? 
   #? shared_credentials_file = "/home/tin/.aws/credentials"         # this copy from my tf execution host to the instance?
@@ -40,14 +40,16 @@ resource "aws_instance" "server" {
   ami           = "ami-04448795e59349189"  # Ubuntu2204_R412_133cranLibs_skeys @ us-east-1 = ubuntu 22.04 LTS HVM SSD dev=ebs 30G + r-base 4.1.2, 133 libs installed + LingMBP rsa key # Public, owned by tin+bildaq/lbl 0200-0742-1650
   #ami           = "ami-0c2ab3b8efb09f272"  # AmaLin 2 HVM Kernel 5.10 SSD  ## untested
 
+  # instance_type change can be done without destruction , but if  type is incomptable and error result, machine will be left in stop state, and next apply will be a destroy 
+  # which means content saved in the old instance would be gone!  
   #instance_type = var.instance_type
   #instance_type = "t2.micro"   # $0.020/hr  1 vCPU  0.6G RAM
   #instance_type = "t2.small"   # $0.023/hr  1 vCPU  2G
-  instance_type = "t2.medium"  # $0.046     2 vCPU  4G                # tested work for us-west-2
+  #instance_type = "t2.medium"  # $0.046     2 vCPU  4G                # tested work for us-west-2
   #instance_type = "t3.large"   # $0.083     2 vCPU  8G
   #instance_type = "t3.xlarge"   # $0.166     4 vCPU 16G
-  #instance_type = "x2gd.2xlarge"  # $0.668        8 vCPU 128G 
-  #instance_type = "c5a.16xlarge"  # $2.464       64 vCPU 128G 
+  instance_type = "c5a.16xlarge"  # $2.464       64 vCPU 128G 
+  #-instance_type = "x2gd.2xlarge"  # $0.668        8 vCPU 128G  arm64
   ## ++CHANGEME++ key_name = "EC2-keyPair-Name"  # key has to be listed by: aws ec2 describe-key-pairs
   key_name = "tin@aws2208blactam.withPass" # changing this, tf apply will destroy existing instance and recreate them.  
   #key_name = "tin@aws2208blactam.withPass-us-east-1" # keys are tied to region, and not finding key TF sometime give a vague error about resource not found
@@ -63,7 +65,7 @@ resource "aws_instance" "server" {
   }
   tags = {
     ##Name = var.instance_name
-    Name = "TerraEC2_Sn50_GEMS_UsEast1"                    # duplicate name within region is ok, so this should not cause problem.
+    Name = "TerraEC2_Sn50_GEMS"                    # duplicate name within region is allowed
     default = "Example EC2 Instance by Sn50 Terraform"
   }
 
