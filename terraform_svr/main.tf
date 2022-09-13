@@ -57,7 +57,7 @@ resource "aws_instance" "webserver" {
   }
   tags = {
     ##Name = var.instance_name
-    Name = "TerraEC2_Sn50_libs133"
+    Name = "TerraEC2_Sn50_libs133_skeys"
     default = "Example EC2 Instance by Sn50 Terraform"
   }
 

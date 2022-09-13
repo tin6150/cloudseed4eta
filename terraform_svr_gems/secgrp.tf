@@ -19,6 +19,9 @@
 ## then this would just exist in the console 
 ## and never need to "TF destroy"
 
+## the security group resrouce will be checked to exist in the region and created as needed
+## eg when changing region in the main.tf
+
 resource "aws_security_group" "tf-sg" {
   #name = "secgrp-by-tf"
   name_prefix = "tf4sg-"   # end up with name like tf4sg-20220809210640999900000001 for all ingress rules
@@ -35,8 +38,17 @@ resource "aws_security_group" "tf-sg" {
 
   #### SSH inbound rules ####
 
+  ingress {
+    description = "TerrForm_Flag_as_No_date_info_in_AWS"
+    from_port   = 30999
+    to_port     = 30999
+    protocol    = "udp"
+    cidr_blocks = [ 	"20.22.9.12/32" ]   # would be a last change date...
+  }
+
   # allowed IP can be a comma separated list
   # update and tf apply on live system ok.
+
   ingress {
     description = "LBL LAN"
     from_port   = 22
