@@ -91,4 +91,5 @@ these messages are benign, instance still get created
       - .ephemeral_block_device: attribute representing nested block must not be unknown itself; set nested attribute values to unknown instead
       - .private_dns_name_options: attribute representing nested block must not be unknown itself; set nested attribute values to unknown instead
 
-(why the GEMS main.tf only work in us-west-2 but NOT in us-east-1 is still being troubleshooted)
+why the GEMS main.tf only work in us-west-2 but NOT in us-east-1 ?  cuz the ami-nnnn is REGION SPECIFIC.  has to make a copy, which generate a new ami-id :-\  
+

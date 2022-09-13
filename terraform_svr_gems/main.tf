@@ -30,12 +30,14 @@ provider "aws" {
 # no obvious good image for Rocky or even CentOS...
 # AMI creation based on ec2 instance (stopping req): https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/tkv-create-ami-from-instance.html
 resource "aws_instance" "server" {
+  #ami           = "the_ami_are_region_specific.  Not finding it TF give a vague error about resource not found in the apply stage, cuz it is AWS barfing, yet the actual error not visible, not even when TF_LOG=INFO is set.  POS"
   #ami           = "ami-09d56f8956ab235b3"  # FC eg?
   #ami           = "ami-0aab355e1bfa1e72e"  # web example, works
   #ami           = "ami-0d70546e43a941d70"  # us-west-2 oregon new ubuntu server 22.04 LTS HVM SSD root dev=ebs
   #ami           = "ami-0949257a1a378f067"  # Ubuntu2204_R411_120cranLibs = ubuntu 22.04 LTS HVM SSD dev=ebs 30G + r-base 4.1.2, had 120 libs installed but then hung ## ERASE
   #ami           = "ami-00a0d9fb155b9f435"  # Ubuntu2204_R411_120cranLibs = ubuntu 22.04 LTS HVM SSD dev=ebs 30G + r-base 4.1.2, 133 libs installed 
-  ami           = "ami-08b1b817db7089086"  # Ubuntu2204_R412_133cranLibs_skeys = ubuntu 22.04 LTS HVM SSD dev=ebs 30G + r-base 4.1.2, 133 libs installed + LingMBP rsa key # Public, owned by tin+bildaq/lbl 0200-0742-1650
+  #ami           = "ami-08b1b817db7089086"  # Ubuntu2204_R412_133cranLibs_skeys @ us-west-2 = ubuntu 22.04 LTS HVM SSD dev=ebs 30G + r-base 4.1.2, 133 libs installed + LingMBP rsa key # Public, owned by tin+bildaq/lbl 0200-0742-1650
+  ami           = "ami-04448795e59349189"  # Ubuntu2204_R412_133cranLibs_skeys @ us-east-1 = ubuntu 22.04 LTS HVM SSD dev=ebs 30G + r-base 4.1.2, 133 libs installed + LingMBP rsa key # Public, owned by tin+bildaq/lbl 0200-0742-1650
   #ami           = "ami-0c2ab3b8efb09f272"  # AmaLin 2 HVM Kernel 5.10 SSD  ## untested
 
   #instance_type = var.instance_type
