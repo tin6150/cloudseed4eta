@@ -54,6 +54,11 @@ terraform init
 terraform plan
 terraform apply
 terraform destroy  # undo everything (and hopefully nothing else that may exist under the aws account/project)
+
+# to enable debugging https://www.terraform.io/internals/debugging
+export TF_LOG=WARN
+export TF_LOG=INFO
+export TF_LOG=ERROR  
 ```
 
 Here is what this playbook does:

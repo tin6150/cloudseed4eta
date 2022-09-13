@@ -35,17 +35,19 @@ resource "aws_instance" "webserver" {
   #ami           = "ami-0aab355e1bfa1e72e"  # web example, works
   #ami           = "ami-0d70546e43a941d70"  # us-west-2 oregon new ubuntu server 22.04 LTS HVM SSD root dev=ebs
   #ami           = "ami-0949257a1a378f067"  # Ubuntu2204_R411_120cranLibs = ubuntu 22.04 LTS HVM SSD dev=ebs 30G + r-base 4.1.2, had 120 libs installed but then hung ## ERASE
-  ami           = " ami-00a0d9fb155b9f435"  # Ubuntu2204_R411_120cranLibs = ubuntu 22.04 LTS HVM SSD dev=ebs 30G + r-base 4.1.2, 133 libs installed 
+  #ami           = "ami-00a0d9fb155b9f435"  # Ubuntu2204_R412_133cranLibs = ubuntu 22.04 LTS HVM SSD dev=ebs 30G + r-base 4.1.2, 133 libs installed # Public, owned by tin+bildaq/lbl 0200-0742-1650
+  ami           = "ami-08b1b817db7089086"  # Ubuntu2204_R412_133cranLibs_skeys = ubuntu 22.04 LTS HVM SSD dev=ebs 30G + r-base 4.1.2, 133 libs installed + LingMBP rsa key # Public, owned by tin+bildaq/lbl 0200-0742-1650
+  # i-06a2cea7c6069190e   = instance id 2022.0912
   #ami           = "ami-0c2ab3b8efb09f272"  # AmaLin 2 HVM Kernel 5.10 SSD  ## untested
 
   #instance_type = var.instance_type
   #instance_type = "t2.micro"   # $0.020/hr  1 vCPU  0.6G RAM
   #instance_type = "t2.small"   # $0.023/hr  1 vCPU  2G
-  #instance_type = "t2.medium"  # $0.046     2 vCPU  4G
+  instance_type = "t2.medium"  # $0.046     2 vCPU  4G
   #instance_type = "t3.large"   # $0.083     2 vCPU  8G
-  instance_type = "t3.xlarge"   # $0.166     4 vCPU 16G
+  #instance_type = "t3.xlarge"   # $0.166     4 vCPU 16G
   ## ++CHANGEME++ key_name = "EC2-keyPair-Name"  # key has to be listed by: aws ec2 describe-key-pairs
-  key_name = "tin@aws2208blactam.withPass" # changing this, tf apply will destroy existing instance and recreate them.
+  key_name = "tin@aws2208blactam.withPass" # if make change to this, tf apply will destroy existing instance and recreate them.
   vpc_security_group_ids      = [aws_security_group.tf-sg.id]
   associate_public_ip_address = true
   root_block_device {
@@ -65,9 +67,12 @@ resource "aws_instance" "webserver" {
 
 #!/bin/bash
 
-touch /SN50_terraform.flag
+touch /tmp/SN50_terraform.flag
 
 sudo touch /SN50_terraform.flag.sudo
+
+# https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-connect-set-up.html
+sudo apt-get install ec2-instance-connect
 
 sudo apt-get update
 
