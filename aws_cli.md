@@ -28,7 +28,7 @@ Be careful with this step, leaked credentials would mean other can gain access t
 
 `~/.aws/config`  can be edited to say, change regio or output to text or json
 
-Alternatively, shell environment variables AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY can be used, but be careful it get cached in the shell's history file eg `~/.bash_history`
+Alternatively, shell environment variables AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY can be used, but be careful it get cached in the shells history file eg `~/.bash_history`
 
 
 ## transfering files using aws s3 command
@@ -85,12 +85,15 @@ aws s3 sync my_data_dir s3://bild-aq-tin6150-data/two-folder/deep-ok/
 
 ## aws ec2 instance command
 
-```
+```{bash}
 aws ec2 describe-instances --output=table   # ascii table for human consumption
 aws ec2 describe-instances --output=text    # not exactly human friendly
 aws ec2 describe-instances --output=json    # definately not human friendly
-aws ec2 stop-instances     --instance-id i-30d27590
-aws ec2 start-instances    --instance-id i-30d27590
+aws ec2 stop-instances     --instance-id i-30d27...
+aws ec2 start-instances    --instance-id i-30d27...
+
+aws ec2 describe-instances |  egrep "Instance|PublicDnsName|stop|terminate|running"
+
 ```
 
 ## aws cli user profile 
