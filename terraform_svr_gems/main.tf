@@ -18,7 +18,8 @@ provider "aws" {
   ## ++CHANGEME++ check region for ec2 for this project/account.
   #region = var.aws_region
   #region = "us-west-2"      # tf does not care whats in ~/.aws/config
-  region = "us-east-1"
+  #region = "us-east-1"      # Virginia, don't use
+  region = "us-east-2"			 # Ohio, Atlas is here.
   ## ++CHANGEME++ shared_credentials_file = "/home/User_Name/.aws/credentials"
   ## or user should be ec2-user? 
   #? shared_credentials_file = "/home/tin/.aws/credentials"         # this copy from my tf execution host to the instance?
@@ -32,13 +33,14 @@ provider "aws" {
 resource "aws_instance" "server" {
   #ami           = "the_ami_are_region_specific.  Not finding it TF give a vague error about resource not found in the apply stage, cuz it is AWS barfing, yet the actual error not visible, not even when TF_LOG=INFO is set.  POS"
   #ami           = "ami-09d56f8956ab235b3"  # FC eg?
+  #ami           = "ami-0c2ab3b8efb09f272"  # AmaLin 2 HVM Kernel 5.10 SSD  ## untested
   #ami           = "ami-0aab355e1bfa1e72e"  # web example, works
   #ami           = "ami-0d70546e43a941d70"  # us-west-2 oregon new ubuntu server 22.04 LTS HVM SSD root dev=ebs
   #ami           = "ami-0949257a1a378f067"  # Ubuntu2204_R411_120cranLibs = ubuntu 22.04 LTS HVM SSD dev=ebs 30G + r-base 4.1.2, had 120 libs installed but then hung ## ERASE
   #ami           = "ami-00a0d9fb155b9f435"  # Ubuntu2204_R411_120cranLibs = ubuntu 22.04 LTS HVM SSD dev=ebs 30G + r-base 4.1.2, 133 libs installed 
   #ami           = "ami-08b1b817db7089086"  # Ubuntu2204_R412_133cranLibs_skeys @ us-west-2 = ubuntu 22.04 LTS HVM SSD dev=ebs 30G + r-base 4.1.2, 133 libs installed + LingMBP rsa key # Public, owned by tin+bildaq/lbl 0200-0742-1650
-  ami           = "ami-04448795e59349189"  # Ubuntu2204_R412_133cranLibs_skeys @ us-east-1 = ubuntu 22.04 LTS HVM SSD dev=ebs 30G + r-base 4.1.2, 133 libs installed + LingMBP rsa key # Public, owned by tin+bildaq/lbl 0200-0742-1650
-  #ami           = "ami-0c2ab3b8efb09f272"  # AmaLin 2 HVM Kernel 5.10 SSD  ## untested
+  #ami           = "ami-04448795e59349189"  # Ubuntu2204_R412_133cranLibs_skeys @ us-east-1 = ubuntu 22.04 LTS HVM SSD dev=ebs 30G + r-base 4.1.2, 133 libs installed + LingMBP rsa key # Public, owned by tin+bildaq/lbl 0200-0742-1650
+  ami           = "ami-0d29ff719b07f06af"  # Ubu2204-R412-166Rlibs : + fix2 R libs (Ling + Karen skeys) us-east-2 Ohio
 
   # instance_type change can be done without destruction , but if  type is incomptable and error result, machine will be left in stop state, and next apply will be a destroy 
   # which means content saved in the old instance would be gone!  
@@ -65,8 +67,8 @@ resource "aws_instance" "server" {
   }
   tags = {
     ##Name = var.instance_name
-    Name = "TerraEC2_Sn50_GEMS"                    # duplicate name within region is allowed
-    default = "Example EC2 Instance by Sn50 Terraform"
+    Name = "TerraEC2_GEMS"                    # duplicate name within region is allowed
+    default = "EC2 Instance for GEMS via Terraform"
   }
 
 

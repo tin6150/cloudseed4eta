@@ -18,7 +18,8 @@ provider "aws" {
   ## ++CHANGEME++ check region for ec2 for this project/account.
   #region = var.aws_region
   #region = "us-west-2"      # tf does not care whats in ~/.aws/config
-  region = "us-east-1"
+  #region = "us-east-1"   # Virginia, no one was here.
+  region = "us-east-2"    # Ohio, Atlas was running in this region
   ## ++CHANGEME++ shared_credentials_file = "/home/User_Name/.aws/credentials"
   ## or user should be ec2-user? 
   #? shared_credentials_file = "/home/tin/.aws/credentials"         # this copy from my tf execution host to the instance?
@@ -39,7 +40,9 @@ resource "aws_instance" "server" {
   #ami           = "ami-00a0d9fb155b9f435"  # Ubuntu2204_R411_120cranLibs = ubuntu 22.04 LTS HVM SSD dev=ebs 30G + r-base 4.1.2, 133 libs installed 
   #ami           = "ami-08b1b817db7089086"  # Ubuntu2204_R412_133cranLibs_skeys @ us-west-2 = ubuntu 22.04 LTS HVM SSD dev=ebs 30G + r-base 4.1.2, 133 libs installed + LingMBP rsa key # Public, owned by tin+bildaq/lbl 0200-0742-1650
   #ami           = "ami-04448795e59349189"  # Ubuntu2204_R412_133cranLibs_skeys @ us-east-1 = ubuntu 22.04 LTS HVM SSD dev=ebs 30G + r-base 4.1.2, 133 libs installed + LingMBP rsa key # Public, owned by tin+bildaq/lbl 0200-0742-1650
-  ami           = "ami-0c55cdc12f0a9d252"  # Ubu2204-R412-bild-aq : extra R libs + python3-pip + libs, karen rsa.  us-east-1
+  #ami           = "ami-0c55cdc12f0a9d252"  # Ubu2204-R412-bild-aq : extra R libs + python3-pip + libs, karen rsa.  us-east-1
+  #//ami           = "ami-04037042628f89b27"  # Ubu2204-R412-166Rlibs : + fix2 R libs (Ling + Karen skeys) us-east-1 Virginia
+  ami           = "ami-0d29ff719b07f06af"  # Ubu2204-R412-166Rlibs : + fix2 R libs (Ling + Karen skeys) us-east-2 Ohio
 
   # instance_type change can be done without destruction , but if  type is incomptable and error result, machine will be left in stop state, and next apply will be a destroy 
   # which means content saved in the old instance would be gone!  
