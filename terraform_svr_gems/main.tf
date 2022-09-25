@@ -1,6 +1,8 @@
-# example from https://linuxhint.com/ec2-instance-aws-terraform/
-# ref: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance
-
+# TF for EC2 instance for GEMS  with R 4.1.2 with many libs (that was used in Atlas, include fix2)
+# fully activated as of 2022-09-25
+# applied on tin@hima
+# aws ec2 start-instances   --profile gems --region us-east-2 --instance-id i-046e5849fdbb9897a
+# aws ec2 stop-instances    --profile gems --region us-east-2 --instance-id i-046e5849fdbb9897a
 
 terraform {
   required_providers {
