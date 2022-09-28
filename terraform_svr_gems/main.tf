@@ -53,6 +53,7 @@ resource "aws_instance" "server" {
   #instance_type = "t3.large"   # $0.083     2 vCPU  8G
   #instance_type = "t3.xlarge"   # $0.166     4 vCPU 16G
   instance_type = "c5a.16xlarge"  # $2.464       64 vCPU 128G 
+  #~~instance_type = "c5ad.16xlarge"  # $2.75       64 vCPU 128G , 2 TB NVME Ephemeral instance storage (for swap)
   #-instance_type = "x2gd.2xlarge"  # $0.668        8 vCPU 128G  arm64
   ## ++CHANGEME++ key_name = "EC2-keyPair-Name"  # key has to be listed by: aws ec2 describe-key-pairs
   key_name = "tin@aws2208blactam.withPass" # changing this, tf apply will destroy existing instance and recreate them.  

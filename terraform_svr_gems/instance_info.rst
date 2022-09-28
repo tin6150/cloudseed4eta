@@ -5,8 +5,9 @@ creating swap is quite involved!
 
 
 Ref:
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-store-swap-volumes.html
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html#InstanceStoreTrimSupport
 
-https://stackoverflow.com/questions/9193066/how-do-i-inspect-vim-variablesttps://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.htmlems
 
 currently c5a.16xlarge, not exactly listed above
 
@@ -21,13 +22,6 @@ gems currently c5a.16xlarge, not exactly listed above
 and indeed such instance has no instance storage.
 
 maybe change to c5ad.16xlarge
-
-nvme0n1      259:0    0   430G  0 disk
-├─nvme0n1p1  259:1    0 429.9G  0 part /
-├─nvme0n1p14 259:2    0     4M  0 part
-└─nvme0n1p15 259:3    0   106M  0 part /boot/efi
-
-
 
 
 
@@ -60,6 +54,7 @@ restarted as c5ad.16xlarge
 file system /var/swapfile persisted and booted ok.
 see two new nvme devices
 
+lsblk -p
 
 nvme0n1      259:1    0   430G  0 disk
 ├─nvme0n1p1  259:2    0 429.9G  0 part /
@@ -75,4 +70,9 @@ sudo parted /dev/nvme1n1 mkpart primary linux-swap 2GiB 290GiB
 sudo mkswap /dev/nvme1n1p1
 sudo swapon /dev/nvme1n1p1
 sudo swapon -s 
+
+
+can probably do  (assuming device path is the same every time)
+but run it once and only once!
+bash -x ~/tin/enable_swap_ephemeral.txt
 
