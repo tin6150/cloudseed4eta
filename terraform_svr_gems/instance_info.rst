@@ -193,11 +193,15 @@ see 1pass
 instance  TerraEC2_GEMS  i-046e5849fdbb9897a    from ami from Zack?
 r5ad.24xlarge    $6.29/hr
     setup using ~/tin-gh/cloudseed4eta/terraform_svr_gems
-
+	this is not the intance config in main.tf... 
 
 Key pair assigned at launch: tin@aws2208blactam.withPass
 
 2 volumes:
 vol-0f92d8f62c07f1bd5   /dev/sda1   430  Attached   2022/09/25 13:16 GMT-7  No  –   No   # gp2
 vol-0ab2ec2b97c4743ba   /dev/sdf    600  Attached   2022/10/03 12:37 GMT-7  No  –   No   # gp3
+
+
+**>>** more notes in ~/CF_BK/aws/gems/
+
 
