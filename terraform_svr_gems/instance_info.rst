@@ -64,12 +64,31 @@ nvme1n1      259:0    0   1.1T  0 disk
 nvme2n1      259:5    0   1.1T  0 disk
 
 
+r5ad.12xlarge has these nvme instance storage:
+
+/dev/nvme1n1      259:4    0 838.2G  0 disk
+/dev/nvme2n1      259:5    0 838.2G  0 disk
+
+
+```{bash}
 sudo parted /dev/nvme1n1 mklabel gpt
-sudo parted /dev/nvme1n1 mkpart primary linux-swap 2GiB 290GiB
+sudo parted /dev/nvme1n1 mkpart primary linux-swap 1 100%
+sudo parted /dev/nvme2n1 align-check optimal 1
 
 sudo mkswap /dev/nvme1n1p1
 sudo swapon /dev/nvme1n1p1
+sudo swapoff /var/swapfile
+
+sudo parted /dev/nvme2n1 mklabel gpt
+sudo parted /dev/nvme2n1 mkpart primary linux-swap 1 100%
+sudo parted /dev/nvme2n1 align-check optimal 1
+sudo mkswap /dev/nvme2n1p1
+sudo swapon /dev/nvme2n1p1
+
+# ideally make both swap same priority...
+
 sudo swapon -s 
+```
 
 
 can probably do  (assuming device path is the same every time)
