@@ -43,7 +43,7 @@ resource "aws_security_group" "tf-sg" {
     from_port   = 30999
     to_port     = 30999
     protocol    = "udp"
-    cidr_blocks = [ 	"20.23.6.23/32" ]   # would be a last change date...
+    cidr_blocks = [ 	"20.23.6.26/32" ]   # would be a last change date...
   }
 
   # allowed IP can be a comma separated list

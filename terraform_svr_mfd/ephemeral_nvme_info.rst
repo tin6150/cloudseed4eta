@@ -2,15 +2,30 @@
 this info is for the mdt instance (under gems acc).
 
 
+
 hima>
-#xx aws ec2 start-instances   --profile gems --region us-east-2 --instance-id i-08dba0b1be02c58e0
-    aws ec2 start-instances                  --region us-east-2 --instance-id i-08dba0b1be02c58e0
+    aws ec2 start-instances                  --region us-east-2 --instance-id "i-0f60315b8a7301f28"
+	# new 36G base OS vol created 2023-06-26
 
 
-
-mdt instance id: i-08dba0b1be02c58e0
-                    "InstanceId": "i-08dba0b1be02c58e0",
+mdt instance id: 
+                    "InstanceId": "i-0f60315b8a7301f28",
                     "InstanceType": "c5ad.16xlarge",
+                            "Value": "EC2 Instance for MDT via Terraform",
+
+                                        "PublicDnsName": "ec2-18-221-113-103.us-east-2.compute.amazonaws.com",
+                                "PublicDnsName": "ec2-18-221-113-103.us-east-2.compute.amazonaws.com",
+                    "UsageOperation": "RunInstances",
+
+
+~~~~~
+
+older instance info below, one with the 891 GB volume.  has been recreated, this is for historical reference only.
+
+
+        "InstanceId": "i-0013d77025f8a5084",
+        "InstanceType": "c5ad.16xlarge",
+
 
 Disk summary:
 

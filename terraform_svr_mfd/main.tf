@@ -1,9 +1,8 @@
 # TF for EC2 instance for MFD (instance paid under GEMS)  with python
-# fully activated 2023.0623.  so may not want to use terraform cmd anymore... in case change things like instance type manually (or even adding IP to security group).
+# fully activated 2023.0626.  so may not want to use terraform cmd anymore... in case change things like instance type manually (or even adding IP to security group).
 # applied on tin@hima
 # future start/stop: 
-# aws ec2 start-instances   --profile gems --region us-east-2 --instance-id i-08dba0b1be02c58e0
-# aws ec2 stop-instances    --profile gems --region us-east-2 --instance-id i-0..
+# aws ec2 stop-instances    --profile gems --region us-east-2 --instance-id i-0f60315b8a7301f28
 
 terraform {
   required_providers {
@@ -70,8 +69,9 @@ resource "aws_instance" "server" {
   root_block_device {
     volume_type           = "gp3"
     #volume_size           = "430"  # x2gd.2xlarge ssd is 474G
-    volume_size       = "891" # size in G. This would be EBS space, don't do large vol for OS, create additional vol with LVM for /mnt/data1 
-    #volume_size           = "28"  # x2gd.2xlarge ssd is 474G   ## has to be larger than ami snapshot size
+    #xx volume_size       = "891" # size in G. This would be EBS space, don't do large vol for OS, create additional vol with LVM for /mnt/data1 
+    volume_size           = "36"  ## has to be larger than ami snapshot size.  if too small get error, hint needing > 31G.   OS actually use 7.3, 
+    # don't be too stingy for long term OS as that would be hard to maintain.
     #https://aws.amazon.com/ec2/instance-types/c5/  
     # With C5ad instances, local NVMe-based SSDs are physically connected to the host server and provide block-level storage that is coupled to the lifetime of the instance.
     # lifetime means till machine is powered off.  after that ec2 instance may get moved and the data is not accessible.  thus the nvme is useful as swap or scratch, not LVM storage
