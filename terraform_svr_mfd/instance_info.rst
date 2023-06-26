@@ -58,7 +58,7 @@ Manually add a 300G volume for use:
 /mnt/data1 volume PV1:
 vol-0166c9da53a18c75b  310G as /dev/sdf    Disk /dev/nvme3n1: 310 GiB, 332859965440 bytes, 650117120 sectors
 
-sudo pvcreate /dev/nvme3n1
+sudo pvcreate /dev/nvme3n1                                # after off,on, this became /nvme1n1: 310 GiB.   good that subsequently LVM scan by signature rather than dev path!
 sudo vgcreate DataVG00 /dev/nvme3n1
 sudo lvcreate -n DataVol01 --size 308G  DataVG00
 sudo mkfs -j /dev/DataVG00/DataVol01
