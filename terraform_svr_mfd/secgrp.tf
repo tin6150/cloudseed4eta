@@ -121,6 +121,8 @@ resource "aws_security_group" "tf-sg" {
     cidr_blocks = [
 			"76.103.180.199/32",	# comcast SF
 			"76.103.180.0/24",	# comcast SF
+			"24.6.0.0/16",		# comcast Fremont-ish
+			#"24.6.206.0/16",	# this won't work, picky!
 		]
   }
 
@@ -130,8 +132,9 @@ resource "aws_security_group" "tf-sg" {
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = [
-			"66.249.0.0/16",  # 
+			"66.249.0.0/16",  #  66.249.77.160 ## 2023-06
 			"10.10.0.0/32",  # 
+			"24.6.203.0/24",	# comcast Hayward 24-6-203-8
 		]
   }
 
@@ -143,7 +146,7 @@ resource "aws_security_group" "tf-sg" {
     protocol    = "tcp"
     cidr_blocks = [
 			"24.6.206.123/32",  # comcast 2023.06
-			"24.6.206.125/32",  # placeholder
+			"24.6.206.0/24",	# comcast Fremont
 		]
   }
 

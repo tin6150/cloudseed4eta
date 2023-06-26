@@ -1,5 +1,6 @@
 # TF for EC2 instance for MFD (instance paid under GEMS)  with python
 # fully activated 2023.0626.  so may not want to use terraform cmd anymore... in case change things like instance type manually (or even adding IP to security group).
+# tf apply with changes to secgrp.tf will destroy old security group and create new one, but the instance/vm would be left alone (not destoryed)
 # applied on tin@hima
 # future start/stop: 
 # aws ec2 stop-instances    --profile gems --region us-east-2 --instance-id i-0f60315b8a7301f28
