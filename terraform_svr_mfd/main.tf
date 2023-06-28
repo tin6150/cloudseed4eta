@@ -54,9 +54,11 @@ resource "aws_instance" "server" {
   #instance_type = "t3.large"   # $0.083     2 vCPU  8G
   #instance_type = "t3.xlarge"   # $0.166     4 vCPU 16G
   #instance_type = "c5a.16xlarge"  # $2.464       64 vCPU 128G 
-  instance_type = "c5ad.16xlarge"  # $            64 vCPU 128G 
+  instance_type = "c5ad.16xlarge"  # $2.75        64 vCPU 128G 
   #~~instance_type = "c5ad.16xlarge"  # $2.75       64 vCPU 128G , 2 TB NVME Ephemeral instance storage (for swap)
-  #~~instance_type = "c5ad.16xlarge"  # $2.75       64 vCPU 128G , 2 TB NVME Ephemeral instance storage (for swap)
+  #~~instance_type = "c5ad.24xlarge"  # $4.13       96 vCPU 192G , 2 TB NVME Ephemeral instance storage (for swap)
+  #~~instance_type = "m5ad.16xlarge"  # $3.30       64 vCPU 256G , 4x 600TB NVME Ephemeral instance storage (for swap)   ## manually changed to this 2023.0627
+  #~~instance_type = "m6g.16xlarge"   # $2.46       64 vCPU 256G , EBS only
   #~~instance_type = "r5ad.12xlarge"  # $3.14       48 vCPU 128G , 2x 830 GB NVME Ephemeral instance storage (for swap) 
   #$$instance_type = "r5ad.24xlarge"  # $6.29/hr # changed manually??  this is the instance type (stopped) on 2023.0613
   #-instance_type = "x2gd.2xlarge"  # $0.668        8 vCPU 128G  arm64.  g = gravitron

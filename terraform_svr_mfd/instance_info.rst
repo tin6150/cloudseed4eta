@@ -2,12 +2,14 @@
 this info is for the mdt instance (under gems acc).
 
 
+
 Running Summary for add-on volumes (data vol, beyond os EBS vol created with the EC2 instance)
 ---------------
 
 vol-0166c9da53a18c75b  310G as /dev/sdf    Disk /dev/nvme3n1: 310 GiB, 332859965440 bytes, 650117120 sectors    data1_pv1
 
 
+enable_swap_ephemeral.sh creates 4 swap partitions out of the 4 ephemeral nvme for the current instance: M5ad.16xlarge 64 vCPU 256G ram
 
 ~~~~~
 
